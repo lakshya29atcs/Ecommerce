@@ -1,7 +1,7 @@
 package com.atcs.ecommerce.entity;
 
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,10 +27,11 @@ public class Cart {
 	private int quantity;
 	@ManyToOne
 	private Product product;
-	@OneToMany(mappedBy = "cart")
-	private List<User> user;
 	
-	public Cart(int id, Date createddate, int quantity, Product product, List<User> user) {
+	@OneToOne
+	private User user;
+	
+	public Cart(int id, Date createddate, int quantity, Product product, User user) {
 		super();
 		this.id = id;
 		this.createdDate = createddate;
@@ -64,10 +66,10 @@ public class Cart {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public List<User> getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(List<User> user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

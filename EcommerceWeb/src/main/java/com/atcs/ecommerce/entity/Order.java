@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="order")
+@Table(name="orders")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +34,7 @@ public class Order {
 
 	public Order() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Order(int id, Date createdDate, double totalPrice, List<OrderItem> orderItem, User user) {

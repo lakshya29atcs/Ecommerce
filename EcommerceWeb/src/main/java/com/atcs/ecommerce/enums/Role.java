@@ -1,4 +1,4 @@
-package com.atcs.ecommerce.entity.enums;
+package com.atcs.ecommerce.enums;
 
 public enum Role {
 

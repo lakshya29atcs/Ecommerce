@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="product")
 public class Product {
@@ -27,7 +30,7 @@ public class Product {
 	private double price;
 	@Column
 	private String description;
-	@ManyToOne()
+	@ManyToOne
 	private Category category;
 	@OneToMany(mappedBy = "product")
 	private List<Cart> cart;
@@ -58,11 +61,11 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImgurl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
-	public void setImgurl(String imgurl) {
-		this.imgUrl = imgurl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	public double getPrice() {
 		return price;
@@ -76,12 +79,14 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@JsonBackReference
 	public Category getCategory() {
 		return category;
 	}
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	@JsonManagedReference
 	public List<Cart> getCart() {
 		return cart;
 	}

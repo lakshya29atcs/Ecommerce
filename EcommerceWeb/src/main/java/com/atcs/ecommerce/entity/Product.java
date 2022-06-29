@@ -21,6 +21,7 @@ public class Product {
 	
 	@Column
 	private String name;
+	
 	@Column
 	private String imgUrl;
 	@Column
@@ -58,11 +59,12 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImgurl() {
+	
+	public String getImgUrl() {
 		return imgUrl;
 	}
-	public void setImgurl(String imgurl) {
-		this.imgUrl = imgurl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	public double getPrice() {
 		return price;

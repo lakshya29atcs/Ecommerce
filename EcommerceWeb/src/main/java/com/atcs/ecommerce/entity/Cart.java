@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="cart")
 public class Cart {
@@ -47,11 +49,11 @@ public class Cart {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getCreateddate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreateddate(Date createddate) {
-		this.createdDate = createddate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -59,6 +61,7 @@ public class Cart {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	@JsonBackReference
 	public Product getProduct() {
 		return product;
 	}

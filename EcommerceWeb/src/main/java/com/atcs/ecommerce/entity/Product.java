@@ -2,11 +2,14 @@ package com.atcs.ecommerce.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,9 +33,11 @@ public class Product {
 	private double price;
 	@Column
 	private String description;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="category_id", nullable=false)
 	private Category category;
-	@OneToMany(mappedBy = "product")
+	
+	@OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
 	private List<Cart> cart;
 	
 	public Product(int id, String name, String imgurl, double price, String description, Category category,

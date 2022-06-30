@@ -26,6 +26,7 @@ public class Cart {
 	private Date createdDate;
 	@Column
 	private int quantity;
+	
 	@ManyToOne
 	private Product product;
 	

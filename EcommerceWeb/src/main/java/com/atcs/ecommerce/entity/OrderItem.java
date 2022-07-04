@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="orderItem")
 public class OrderItem {
@@ -70,7 +72,7 @@ public class OrderItem {
 	}
 
 	public double getPrice() {
-		return price;
+		return (price*quantity);
 	}
 
 	public void setPrice(double price) {
@@ -85,6 +87,7 @@ public class OrderItem {
 		this.createdDate = createdDate;
 	}
 
+	@JsonBackReference
 	public Order getOrder() {
 		return order;
 	}

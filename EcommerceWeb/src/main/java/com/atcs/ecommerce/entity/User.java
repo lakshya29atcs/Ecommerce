@@ -40,6 +40,7 @@ public class User {
 	@Column
 	private Role role;
 	
+	
 	@OneToMany(mappedBy = "user")
 	private List<Order> order;
 	

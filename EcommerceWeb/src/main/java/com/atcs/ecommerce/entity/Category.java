@@ -2,6 +2,7 @@ package com.atcs.ecommerce.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Category {
 	@Column
 	private String imageUrl;
 	
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category", cascade=CascadeType.ALL)
 	private List<Product> product;
 
 	public Category() {	}

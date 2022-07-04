@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="orders")
 public class Order {
@@ -70,6 +72,7 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
+	@JsonManagedReference
 	public List<OrderItem> getOrderItem() {
 		return orderItem;
 	}

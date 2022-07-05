@@ -19,5 +19,9 @@ public interface CartService {
 	public void deleteData(int id);
 
 	public Cart getDataById(int id);
+	
+	public void addToCart(int id);
+	
+	public void removeToCart(int id);
 
 }

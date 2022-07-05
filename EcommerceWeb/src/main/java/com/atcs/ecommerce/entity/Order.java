@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -23,6 +25,7 @@ public class Order {
 	private int id;
 	
 	@Column
+	@CreatedDate
 	private Date createdDate;
 	
 	@Column
@@ -39,10 +42,9 @@ public class Order {
 		
 	}
 
-	public Order(int id, Date createdDate, double totalPrice, List<OrderItem> orderItem, User user) {
+	public Order( double totalPrice, List<OrderItem> orderItem, User user) {
 		super();
-		this.id = id;
-		this.createdDate = createdDate;
+	//	this.createdDate = Date.;
 		this.totalPrice = totalPrice;
 		this.orderItem = orderItem;
 		this.user = user;

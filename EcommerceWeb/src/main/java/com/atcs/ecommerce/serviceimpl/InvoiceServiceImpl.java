@@ -20,11 +20,11 @@ public class InvoiceServiceImpl implements InvoiceService
 	OrderRepo orderRepo;
 		
 	@Override
-	public Invoice getInvoice(int id) {
+	public Invoice getInvoice(int orderid) {
 		
-		Order order = orderRepo.findById(id).get();
+		Order order = orderRepo.findById(orderid).get();
 		double totalPrice = order.getTotalPrice();
-		return new Invoice(order.getOrderItem(),totalPrice,new Address());
+		return new Invoice(order.getOrderItem(),totalPrice);
 	}
 
 }

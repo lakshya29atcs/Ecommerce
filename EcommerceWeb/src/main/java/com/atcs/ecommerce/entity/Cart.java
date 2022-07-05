@@ -2,13 +2,14 @@ package com.atcs.ecommerce.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 
 @Entity
@@ -20,16 +21,17 @@ public class Cart {
 	private int id;
 	
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<OrderItem> orderItem; 
 	
-	@OneToOne
-	private User user;
 	
 	
-	public Cart(List<OrderItem> orderItem, User user) {
+	
+
+	public Cart( List<OrderItem> orderItem) {
 		super();
 		this.orderItem = orderItem;
-		this.user = user;
+
 	}
 	public Cart() {
 		super();
@@ -47,13 +49,7 @@ public class Cart {
 	public void setOrderItem(List<OrderItem> orderItem) {
 		this.orderItem = orderItem;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	
 	
 
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="orderItem")
+@EntityListeners(AuditingEntityListener.class)
 public class OrderItem {
 	
 	@Id
@@ -31,11 +36,14 @@ public class OrderItem {
 	private @NotNull double price;
 	
 	@Column 
-	private Date createdDate;
+	@CreatedDate
+	private Date createdDate = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
 	private Order order;
+	
+
 	
 	@OneToOne
 	private Product product;
@@ -54,6 +62,15 @@ public class OrderItem {
 		this.order = order;
 		this.product = product;
 	}
+
+	public OrderItem(@NotNull int quantity, @NotNull double price, Product product) {
+		super();
+		this.quantity = quantity;
+		this.price = price;
+		this.product = product;
+	}
+
+	
 
 	public int getId() {
 		return id;
@@ -102,6 +119,12 @@ public class OrderItem {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+	@Override
+	public String toString() {
+		return "OrderItem [id=" + id + ", quantity=" + quantity + ", price=" + price + ", createdDate=" + createdDate
+				+ ", order=" + order + ", product=" + product + "]";
 	}
 	
 }

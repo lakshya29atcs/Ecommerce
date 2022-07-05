@@ -17,8 +17,8 @@ public class InvoiceController {
 	InvoiceService invoiceService;
 
 	@GetMapping("/{id}")
-	public Invoice getInvoice(@PathVariable("id") int id)
+	public Invoice getInvoice(@PathVariable("id") int orderid)
 	{
-		return invoiceService.getInvoice(id);
+		return invoiceService.getInvoice(orderid);
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atcs.ecommerce.entity.Order;
 import com.atcs.ecommerce.service.CheckoutService;
 
 @RestController
@@ -17,8 +18,8 @@ public class CheckoutController {
 	
 	
 	@PostMapping("/{id}")
-	public void postCheck(@PathVariable("id") int id  )
+	public Order postCheck(@PathVariable("id") int userid  )
 	{
-		checkoutService.postCheck(id);
+		return checkoutService.postCheck(userid);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.atcs.ecommerce.entity.Cart;
 import com.atcs.ecommerce.entity.User;
 import com.atcs.ecommerce.repo.UserRepo;
 import com.atcs.ecommerce.service.UserService;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void postData(User user) {
 	
+		user.setCart(new Cart());
 		userRepo.save(user);
 		
 	}

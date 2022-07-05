@@ -20,6 +20,18 @@ public class CartController {
 	@Autowired
 	CartService cartsvc;
 	
+	@PostMapping("/addtocart/{id1}/{id2}")
+	public void addToCart(@PathVariable("id1") int id1, @PathVariable("id2") int id2)
+	{
+		cartsvc.addToCart(id1, id2);
+	}
+	
+	@PostMapping("/remove/{id1}/{id2}")
+	public void removeToCart(@PathVariable("id1") int id1, @PathVariable("id2") int id2)
+	{
+		cartsvc.removeToCart(id1, id2);
+	}
+	
 	@GetMapping("/")
 	public List<Cart> getData(){
 		return cartsvc.getData();

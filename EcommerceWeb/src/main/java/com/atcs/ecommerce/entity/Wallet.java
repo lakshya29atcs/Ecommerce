@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "wallet")
@@ -17,14 +20,28 @@ public class Wallet {
 	
 	@Column
 	private double money;
+	
+	@OneToOne
+	private User users;
 
 	public Wallet() {	}
 
-	public Wallet(int id, double money) {
+	@JsonBackReference
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	public Wallet(int id, double money, User users) {
 		super();
 		this.id = id;
 		this.money = money;
+		this.users = users;
 	}
+
 
 	public int getId() {
 		return id;

@@ -3,6 +3,7 @@ package com.atcs.ecommerce.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -39,8 +40,8 @@ public class OrderItem {
 	@CreatedDate
 	private Date createdDate = new Date();
 	
-	@ManyToOne
-	@JoinColumn(name = "order_id", referencedColumnName = "id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_id")
 	private Order order;
 	
 

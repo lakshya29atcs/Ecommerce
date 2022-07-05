@@ -41,5 +41,17 @@ public class ProductController {
 	public void deleteById(@PathVariable("id") int id){
 		prodsvc.deleteData(id);
 	}
+	@GetMapping("/price/{price}")
+	public List<Product> getByPrice(@PathVariable("price") double price){
+		return prodsvc.getByPrice(price);
+	}
+	@GetMapping("/name/{name}")
+	public String getByName(@PathVariable("name") String name){
+		return prodsvc.getDetails(name);
+	}
+	@GetMapping("/category/{category_name}")
+	public List<Product> getByCategory(@PathVariable("category_name") String category){
+		return prodsvc.getByCategory(category);
+	}
 	
 }

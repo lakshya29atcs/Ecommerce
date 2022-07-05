@@ -10,6 +10,7 @@ import com.atcs.ecommerce.entity.Cart;
 import com.atcs.ecommerce.entity.Order;
 import com.atcs.ecommerce.entity.OrderItem;
 import com.atcs.ecommerce.entity.User;
+import com.atcs.ecommerce.repo.OrderRepo;
 import com.atcs.ecommerce.repo.UserRepo;
 import com.atcs.ecommerce.service.CheckoutService;
 
@@ -18,6 +19,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 	@Autowired
 	UserRepo userRepo;
+	
+	@Autowired
+	OrderRepo orderRepo;
 	
 	@Override
 	public void postCheck(int id) {
@@ -31,7 +35,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 	    	 totalPrice += ot.getPrice()*ot.getQuantity();
 	     }
 	     Order order = new Order(totalPrice,orderItem,user);
+	     orderRepo.save(order);
 	     
+	     //For empty cart items
 	     cart.setOrderItem(new ArrayList<>());
 	}
 

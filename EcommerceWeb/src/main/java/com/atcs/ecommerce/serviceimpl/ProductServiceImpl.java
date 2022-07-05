@@ -65,14 +65,14 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public String getDetails(String name) {
+	public Product getDetails(String name) {
 		List<Product> ls = productRepo.findAll();
 		for(Product p: ls) {
 			if(p.getName().equals(name)) {
-				return p.getDescription();
+				return p;
 			}
 		}
-		return "not available";
+		return null;
 	}
 
 

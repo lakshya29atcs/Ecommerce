@@ -19,7 +19,7 @@ public interface ProductService  {
 	
 	public Product getDataById(int id);
 	
-	public String getDetails(String name);
+	public Product getDetails(String name);
 	
 	public List<Product> getByPrice(double price);
 	

@@ -2,6 +2,7 @@ package com.atcs.ecommerce.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.atcs.ecommerce.enums.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -41,16 +43,16 @@ public class User {
 	private Role role;
 	
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
 	private List<Order> order;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "users", cascade= CascadeType.ALL)
 	private Wallet wallet;
 	
 	@OneToOne
 	private AuthenticationToken auth;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cart cart;
 
 	public int getId() {
@@ -101,6 +103,7 @@ public class User {
 		this.role = role;
 	}
 
+	@JsonManagedReference
 	public List<Order> getOrder() {
 		return order;
 	}

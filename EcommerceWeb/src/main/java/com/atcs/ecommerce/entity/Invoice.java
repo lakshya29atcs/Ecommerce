@@ -23,6 +23,12 @@ public class Invoice {
 		this.address = address;
 	}
 
+	public Invoice(List<OrderItem> orderItem, double totalPrice) {
+		super();
+		this.orderItem = orderItem;
+		this.totalPrice = totalPrice;
+	}
+
 	public Invoice() {
 		super();
 		

@@ -20,8 +20,8 @@ public interface CartService {
 
 	public Cart getDataById(int id);
 	
-	public void addToCart(int id);
+	public void addToCart(int id1,int id2);
 	
-	public void removeToCart(int id);
+	public void removeToCart(int id1, int id2);
 
 }

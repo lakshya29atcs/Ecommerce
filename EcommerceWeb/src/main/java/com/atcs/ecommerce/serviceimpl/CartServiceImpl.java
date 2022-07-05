@@ -1,12 +1,17 @@
 package com.atcs.ecommerce.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.atcs.ecommerce.entity.Cart;
+import com.atcs.ecommerce.entity.OrderItem;
+import com.atcs.ecommerce.entity.Product;
 import com.atcs.ecommerce.repo.CartRepo;
 import com.atcs.ecommerce.repo.OrderRepo;
+import com.atcs.ecommerce.repo.ProductRepo;
 import com.atcs.ecommerce.repo.UserRepo;
 import com.atcs.ecommerce.service.CartService;
 
@@ -19,6 +24,9 @@ public class CartServiceImpl implements CartService{
 	public final OrderRepo orderRepo;
 	
 	public final UserRepo userRepo;
+	
+	@Autowired
+	ProductRepo productRepo;
 	
 	
 	
@@ -56,13 +64,39 @@ public class CartServiceImpl implements CartService{
 		
 	}
 	@Override
-	public void addToCart(int id) {
+	public void addToCart(int id,int id1) {
+		Product pro = productRepo.findById(id).get();
+		
+		OrderItem orderItem = new OrderItem(1, pro.getPrice(), pro);
+		
+		Cart cart = cartRepo.findById(id1).get();
+		
+		cart.getOrderItem().add(orderItem);
+		
+		cartRepo.save(cart);
+	}
+
+	@Override
+	public void removeToCart(int proid, int cartid) {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void removeToCart(int id) {
-		// TODO Auto-generated method stub
+		
+		Cart cart = cartRepo.findById(cartid).get();
+		
+		List<OrderItem> orderItem = cart.getOrderItem();
+		
+		int rm =0;
+		for(int i=0;i<orderItem.size();i++)
+		{
+			if(orderItem.get(i).getProduct().getId()==proid)
+			{
+				rm=i;
+				break;
+			}
+		}
+		orderItem.remove(rm);
+			
+		cartRepo.save(cart);
 		
 	}
 

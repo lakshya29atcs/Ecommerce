@@ -51,8 +51,6 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "users", fetch = FetchType.LAZY)
 	private Wallet wallet;
 	
-	@OneToOne
-	private AuthenticationToken auth;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cart cart;
@@ -122,13 +120,7 @@ public class User {
 		this.wallet = wallet;
 	}
 
-	public AuthenticationToken getAuth() {
-		return auth;
-	}
-
-	public void setAuth(AuthenticationToken auth) {
-		this.auth = auth;
-	}
+	
 
 	public Cart getCart() {
 		return cart;
@@ -144,7 +136,7 @@ public class User {
 	}
 
 	public User(int id, String firstname, String lastname, String email, String password, Role role, List<Order> order,
-			Wallet wallet, AuthenticationToken auth, Cart cart) {
+			Wallet wallet, Cart cart) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -154,7 +146,6 @@ public class User {
 		this.role = role;
 		this.order = order;
 		this.wallet = wallet;
-		this.auth = auth;
 		this.cart = cart;
 	}
 	

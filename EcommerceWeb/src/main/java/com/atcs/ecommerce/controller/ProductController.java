@@ -46,7 +46,7 @@ public class ProductController {
 		return prodsvc.getByPrice(price);
 	}
 	@GetMapping("/name/{name}")
-	public String getByName(@PathVariable("name") String name){
+	public Product getByName(@PathVariable("name") String name){
 		return prodsvc.getDetails(name);
 	}
 	@GetMapping("/category/{category_name}")
